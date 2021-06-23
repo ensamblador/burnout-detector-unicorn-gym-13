@@ -1,0 +1,118 @@
+{
+    "messageVersion": "1.0",
+    "invocationSource": "FulfillmentCodeHook",
+    "userId": "5d8c0810-f8f6-4013-93fa-b315f09a98c9",
+    "sessionAttributes": {
+        "EmployeeID": "82a9b509-0a9b-4ed4-adf6-3ae8846b747d"
+    },
+    "requestAttributes": null,
+    "bot": {
+        "name": "burnout_bot",
+        "alias": "$LATEST",
+        "version": "$LATEST"
+    },
+    "outputDialogMode": "Text",
+    "currentIntent": {
+        "name": "yes_intent",
+        "slots": {
+            "slotFour": "nunca",
+            "slotOne": "nunca",
+            "slotThree": "nunca",
+            "slotTwo": "nunca",
+            "slotFive": "nunca",
+            "slotSix": "a veces"
+        },
+        "slotDetails": {
+            "slotFour": {
+                "resolutions": [
+                    {
+                        "value": "nunca"
+                    }
+                ],
+                "originalValue": "nunca"
+            },
+            "slotOne": {
+                "resolutions": [
+                    {
+                        "value": "nunca"
+                    }
+                ],
+                "originalValue": "nunca"
+            },
+            "slotThree": {
+                "resolutions": [
+                    {
+                        "value": "nunca"
+                    }
+                ],
+                "originalValue": "nunca"
+            },
+            "slotTwo": {
+                "resolutions": [
+                    {
+                        "value": "nunca"
+                    }
+                ],
+                "originalValue": "nunca"
+            },
+            "slotFive": {
+                "resolutions": [
+                    {
+                        "value": "nunca"
+                    }
+                ],
+                "originalValue": "nunca"
+            },
+            "slotSix": {
+                "resolutions": [
+                    {
+                        "value": "a veces"
+                    },
+                    {
+                        "value": "rara vez"
+                    }
+                ],
+                "originalValue": "a veces"
+            }
+        },
+        "confirmationStatus": "null",
+        "nluIntentConfidenceScore": 1.0
+    },
+    "alternativeIntents": [
+        {
+            "name": "AMAZON.FallbackIntent",
+            "slots": {},
+            "slotDetails": {},
+            "confirmationStatus": "null",
+            "nluIntentConfidenceScore": null
+        },
+        {
+            "name": "no_intent",
+            "slots": {},
+            "slotDetails": {},
+            "confirmationStatus": "null",
+            "nluIntentConfidenceScore": 0.49
+        }
+    ],
+    "inputTranscript": "a veces",
+    "recentIntentSummaryView": [
+        {
+            "intentName": "yes_intent",
+            "checkpointLabel": null,
+            "slots": {
+                "slotFour": "nunca",
+                "slotOne": "nunca",
+                "slotThree": "nunca",
+                "slotTwo": "nunca",
+                "slotFive": "nunca",
+                "slotSix": null
+            },
+            "confirmationStatus": "null",
+            "dialogActionType": "ElicitSlot",
+            "fulfillmentState": null,
+            "slotToElicit": "slotSix"
+        }
+    ],
+    "sentimentResponse": null,
+    "kendraResponse": null
+}

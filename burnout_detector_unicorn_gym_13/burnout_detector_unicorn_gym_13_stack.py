@@ -12,6 +12,13 @@ from aws_cdk import (
     aws_events_targets as targets,
     aws_dynamodb as dynamodb)
 
+
+INSTANCE_ID  = '4061ae9c-11a9-468c-a298-318842091902'
+CONTACT_FLOW_ID = '6f023411-9715-4936-ad58-ee8367581b5b'
+SOURCE_PHONE= '+56800914991'
+
+
+
 class BurnoutDetectorUnicornGym13Stack(cdk.Stack):
 
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
@@ -46,7 +53,13 @@ class BurnoutDetectorUnicornGym13Stack(cdk.Stack):
             runtime=aws_lambda.Runtime.PYTHON_3_8, 
             handler="lambda_function.lambda_handler",
             code=aws_lambda.Code.asset("./lambdas/call"),
-            environment={'TABLE_NAME': table_employee.table_name}
+            environment={
+                'TABLE_NAME': table_employee.table_name,
+                'INSTANCE_ID': INSTANCE_ID,
+                'CONTACT_FLOW_ID': CONTACT_FLOW_ID,
+                'SOURCE_PHONE': SOURCE_PHONE
+                
+            }
         )
 
         lambda_call.add_to_role_policy(iam.PolicyStatement(
@@ -59,3 +72,17 @@ class BurnoutDetectorUnicornGym13Stack(cdk.Stack):
         event_rule.add_target(targets.LambdaFunction(lambda_call))
 
         # The code that defines your stack goes here
+
+        lambda_fulfillment = aws_lambda.Function (self, "fulfillment", memory_size=256, 
+            timeout= core.Duration.seconds(10),
+            runtime=aws_lambda.Runtime.PYTHON_3_8, 
+            handler="lambda_function.lambda_handler",
+            code=aws_lambda.Code.asset("./lambdas/fulfillment"),
+            environment={
+                'DynamoDB_Table': table_respuestas.table_name,
+                
+            }
+        )
+        table_respuestas.grant_read_write_data(lambda_fulfillment)
+
+        self.lambda_fulfillment_arn = lambda_fulfillment.function_arn

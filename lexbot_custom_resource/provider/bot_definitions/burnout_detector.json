@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "burnout_bot",
+    "version": "2",
+    "intents": [
+      {
+        "name": "no_intent",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "no quiero",
+          "no me interesa",
+          "después",
+          "no gracias"
+        ],
+        "slots": []
+      },
+      {
+        "name": "yes_intent",
+        "version": "5",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:625806755153:function:BurnoutDetectorUnicornGym13Sta-fulfillmentE578DF28-sorE2CTBBDDV",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "si",
+          "ok",
+          "quiero continuar",
+          "dale",
+          "bueno",
+          "me parece",
+          "ya"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sientes que no encuentras lo que buscas en el trabajo?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 5,
+            "name": "slotFive"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sientes que logras menos de lo que deberías?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "name": "slotFour"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Tienes pensamientos negativos acerca del trabajo?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "slotOne"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sienes que trabajas mucho pero no avanzas?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 6,
+            "name": "slotSix"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sientes que no tienes con quién hablar?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "slotThree"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "respuestas_encuesta",
+            "slotTypeVersion": "2",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Te sientes desanimado del trabajo?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "slotTwo"
+          }
+        ]
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "respuestas_encuesta",
+        "version": "2",
+        "description": "posibles respuestas de los empleados",
+        "enumerationValues": [
+          {
+            "value": "nunca",
+            "synonyms": [
+              "no"
+            ]
+          },
+          {
+            "value": "a veces"
+          },
+          {
+            "value": "rara vez"
+          },
+          {
+            "value": "frecuentemente",
+            "synonyms": [
+              "si"
+            ]
+          },
+          {
+            "value": "siempre"
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      }
+    ],
+    "voiceId": "Lupe",
+    "childDirected": false,
+    "locale": "es-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": false,
+    "enableModelImprovements": true
+  }
+}
